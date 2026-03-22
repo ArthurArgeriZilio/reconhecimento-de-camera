@@ -4,6 +4,34 @@
 
 ---
 
+## ⚡ Como rodar — Jeito fácil (recomendado)
+
+**Dê um duplo clique no arquivo `iniciar_demi.bat`.**
+
+O script vai:
+1. Verificar se o Python está instalado
+2. Instalar todas as dependências automaticamente
+3. Iniciar o dashboard no navegador (`http://localhost:5000`)
+4. Abrir a câmera do DEMI
+
+> Não precisa abrir terminal nem digitar nenhum comando.
+
+---
+
+## ⚠️ REQUISITO OBRIGATÓRIO — Versão do Python
+
+> **MediaPipe NÃO é compatível com Python 3.12 ou superior.**
+> 
+> Use obrigatoriamente **Python 3.9, 3.10 ou 3.11**.
+> 
+> 📥 Download recomendado: [Python 3.11.9](https://www.python.org/downloads/release/python-3119/)
+> 
+> Durante a instalação, marque a opção **"Add Python to PATH"**.
+
+Se você tiver Python 3.12+ e tentar rodar, vai aparecer um erro na instalação do MediaPipe. A solução é instalar o Python 3.11 e tentar novamente.
+
+---
+
 ## Funcionalidades
 
 | Recurso | Descrição |
@@ -26,20 +54,20 @@
 
 ## Requisitos
 
-- Python 3.8+
+- **Python 3.9, 3.10 ou 3.11** (⚠️ não use 3.12+)
 - Webcam
 
 ### Instalação das dependências
 
 ```bash
-pip install opencv-python mediapipe flask
+pip install opencv-python mediapipe flask "numpy<2"
 ```
 
 > **IMPORTANTE:** Use `opencv-python` (NÃO `opencv-python-headless`), senão a janela de vídeo não funciona.
 
 ---
 
-## Como usar
+## Como usar (via terminal)
 
 ### 1. Iniciar a detecção + coleta de dados
 
@@ -93,15 +121,18 @@ Pressione `C` para alternar entre elas.
 ## Estrutura do Projeto
 
 ```
-camera reconhecer/
-├── demi.py           # Detecção + coleta de dados
-├── dashboard.py      # Dashboard web com KPIs (Flask)
-├── demi_data.db      # Banco de dados SQLite (gerado automaticamente)
-├── README.md         # Esta documentação
-├── TEAM_CHARTER.md   # Team Charter da equipe
-├── screenshots/      # Capturas de tela (criada automaticamente)
-├── recordings/       # Gravações de vídeo (criada automaticamente)
-└── exports/          # Arquivos CSV exportados (criada automaticamente)
+reconhecimento-de-camera/
+├── demi.py               # Detecção + coleta de dados
+├── dashboard.py          # Dashboard web com KPIs (Flask)
+├── iniciar_demi.bat      # Launcher — duplo clique para rodar tudo
+├── requirements.txt      # Dependências do projeto
+├── demi_data.db          # Banco de dados SQLite (gerado automaticamente)
+├── README.md             # Esta documentação
+├── TEAM_CHARTER.md       # Team Charter da equipe
+├── RELATORIO_TECNICO.md  # Relatório técnico completo
+├── screenshots/          # Capturas de tela (criada automaticamente)
+├── recordings/           # Gravações de vídeo (criada automaticamente)
+└── exports/              # Arquivos CSV exportados (criada automaticamente)
 ```
 
 ---
@@ -110,12 +141,12 @@ camera reconhecer/
 
 ```
 [Webcam] → [demi.py - MediaPipe + OpenCV] → [SQLite DB]
-                                                  ↓
-                                            [dashboard.py - Flask]
-                                                  ↓
-                                            [Navegador - KPIs + Gráficos]
-                                                  ↓
-                                            [Exportação CSV]
+                                                   ↓
+                                             [dashboard.py - Flask]
+                                                   ↓
+                                             [Navegador - KPIs + Gráficos]
+                                                   ↓
+                                             [Exportação CSV]
 ```
 
 ### Pilares da Indústria 4.0 atendidos:
@@ -158,5 +189,6 @@ O código é organizado em funções separadas por responsabilidade:
 |---|---|
 | `The function is not implemented` no `cv2.imshow` | Instale `opencv-python` (não headless): `pip uninstall opencv-python-headless -y && pip install opencv-python` |
 | `NumPy 1.x cannot be run in NumPy 2.x` | Faça downgrade: `pip install "numpy<2"` |
+| Erro ao instalar MediaPipe | Verifique se está usando Python 3.9, 3.10 ou 3.11 (não 3.12+) |
 | Câmera não abre | Verifique se outra aplicação está usando a webcam |
 | FPS muito baixo | Desative módulos que não precisa (teclas 1, 2, 3) |

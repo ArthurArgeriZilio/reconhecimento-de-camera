@@ -70,7 +70,7 @@ A arquitetura do DEMI segue um fluxo de processamento em camadas, do sensor até
 
 **Camada 1 — Captura (Webcam):** A câmera envia frames brutos para o processo principal. O OpenCV gerencia a captura com `cv2.VideoCapture(0)`.
 
-**Camada 2 — Processamento (demi.py):** O coração do sistema. Aplica os três modelos do MediaPipe (pose, mãos, face mesh), calcula os indicadores de segurança em tempo real, exibe o overlay na janela de vídeo e registra os dados no banco a cada segundo via `log_detection()`.
+**Camada 2 — Processamento (demi.py):** O coração do sistema. Aplica os três modelos do MediaPipe (pose, mãos, face mesh), calcula os indicadores de segurança em tempo real, exibe o overlay na janela de vídeo e registra os dados no banco a cada segundo via `log_detection()`. 
 
 **Camada 3 — Armazenamento (SQLite):** Banco de dados local `demi_data.db` com três tabelas: `detections` (registros por segundo), `sessions` (resumo por sessão) e `alerts` (alertas disparados com timestamp e descrição).
 
@@ -145,7 +145,15 @@ A coleta foi realizada em ambiente de laboratório/sala de aula, durante o perí
 | Taxa média de detecção de rosto | **89,1%** |
 | Período | 14/03/2026 a 20/03/2026 |
 
-Os dados brutos completos estão disponíveis em: **[LINK DO DRIVE]**
+Todos os arquivos do projeto estão disponíveis na pasta do Google Drive da equipe:
+
+📁 **[Acesse a pasta completa do projeto no Google Drive](https://drive.google.com/drive/folders/1lxLwyeiMIu-eIh7HvVcQnbCQTCezkQzs?usp=sharing)**
+
+A pasta contém:
+- **Dataset bruto** — os três arquivos `.csv` de coleta (`detections_dataset.csv`, `alerts_dataset.csv`, `sessions_dataset.csv`)
+- **Vídeo de demonstração** — gravação do protótipo funcionando em tempo real, com narração da equipe
+- **Código-fonte completo** — todos os arquivos do projeto para execução local (`demi.py`, `dashboard.py`, `iniciar_demi.bat`, `requirements.txt`)
+- **Capturas de tela** — screenshots do dashboard e da câmera com overlay de detecção
 
 O dataset inclui três arquivos:
 - `detections_dataset.csv` — registro por segundo de todas as variáveis de detecção
@@ -235,3 +243,4 @@ SOUSA, R. V.; OLIVEIRA, M. A. *Visão Computacional Aplicada ao Monitoramento de
 SILVA, J. F.; CARVALHO, T. M. *Indústria 4.0: Sensoriamento Inteligente e Análise de Dados em Tempo Real*. Anais do Congresso Brasileiro de Engenharia de Produção (CONBREPRO), p. 112-121, 2022.
 
 NETO, A. R.; PIMENTEL, B. G. *Sistemas de Visão Computacional de Baixo Custo para Monitoramento Ergonômico: Uma Revisão Sistemática*. In: Simpósio Brasileiro de Automação Inteligente (SBAI), 2023.
+
